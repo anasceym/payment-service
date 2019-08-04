@@ -3,11 +3,6 @@ import { Injectable } from '@nestjs/common'
 import { MakePaymentResponseDto } from './dto/make-payment.dto'
 import { PaymentStatus } from './entity/payment'
 
-export interface Order {
-  id: string
-  price: number
-}
-
 @Injectable()
 export class PaymentService {
   async make (
