@@ -1,5 +1,7 @@
 import { Test, TestingModule } from '@nestjs/testing'
 
+import { configProvider } from '../config/config.provider'
+import { loggerProvider } from '../logger/logger.service'
 import { PaymentService } from './payment.service'
 
 describe('Payment', () => {
@@ -7,7 +9,7 @@ describe('Payment', () => {
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [PaymentService],
+      providers: [PaymentService, loggerProvider, configProvider],
     }).compile()
 
     provider = module.get<PaymentService>(PaymentService)
