@@ -2,7 +2,7 @@ import { Injectable } from '@nestjs/common'
 
 export enum PAYMENT_STATUS {
   DECLINED = 'DECLINED',
-  CONFIRMED = 'CONFIRMED'
+  CONFIRMED = 'CONFIRMED',
 }
 
 export interface Order {
@@ -12,25 +12,27 @@ export interface Order {
 
 @Injectable()
 export class Payment {
-  async make (order: Order): Promise<{
+  async make (
     order: Order,
+  ): Promise<{
+    order: Order
     status: PAYMENT_STATUS
   }> {
-    return new Promise((resolve) => {
+    return new Promise(resolve => {
       setTimeout(() => {
         return resolve({
           order,
-          status: randomPaymentResult(PAYMENT_STATUS)
+          status: randomPaymentResult(PAYMENT_STATUS),
         })
       }, 3000)
     })
   }
 }
 
-function randomPaymentResult<T>(anEnum: T): T[keyof T] {
-  const enumValues = Object.keys(anEnum) as unknown as Array<T[keyof T]>
+function randomPaymentResult<T> (anEnum: T): T[keyof T] {
+  const enumValues = (Object.keys(anEnum) as unknown) as Array<T[keyof T]>
 
   const randomIndex = Math.floor(Math.random() * enumValues.length)
   const randomEnumValue = enumValues[randomIndex]
-  return randomEnumValue;
+  return randomEnumValue
 }
