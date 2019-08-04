@@ -14,8 +14,6 @@ install:
 
 script:
   - docker run --rm payment-service npm test
-
-after_success:
   - docker --version
   - pip install --user awscli 
   - export PATH=$PATH:$HOME/.local/bin
