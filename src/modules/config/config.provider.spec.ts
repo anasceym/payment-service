@@ -17,7 +17,7 @@ describe('Config', () => {
   it('should be defined', () => {
     expect(provider).toBeDefined()
 
-    expect(provider.app.host).toBe('localhost')
+    expect(provider.app.host).toBe('0.0.0.0')
     expect(provider.app.port).toBe(2700)
   })
 })
