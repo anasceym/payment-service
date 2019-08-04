@@ -1,16 +1,16 @@
 import { Test, TestingModule } from '@nestjs/testing'
 
-import { Order, Payment } from './payment.service'
+import { PaymentService } from './payment.service'
 
 describe('Payment', () => {
-  let provider: Payment
+  let provider: PaymentService
 
   beforeEach(async () => {
     const module: TestingModule = await Test.createTestingModule({
-      providers: [Payment],
+      providers: [PaymentService],
     }).compile()
 
-    provider = module.get<Payment>(Payment)
+    provider = module.get<PaymentService>(PaymentService)
   })
 
   it('should be defined', () => {
@@ -19,15 +19,13 @@ describe('Payment', () => {
 
   describe('Make a payment', () => {
     it('resolve random status "CONFIRMED/DECLINED"', async () => {
-      const fakeOrder: Order = {
-        id: 'id-1234',
-        price: 1000,
-      }
+      const fakeRefId = 'id-1234'
+      const price = 1000
 
-      const result = await provider.make(fakeOrder)
+      const result = await provider.make(fakeRefId, price)
 
       expect(result.status).toMatch(/CONFIRMED|DECLINED/)
-      expect(result.order.id).toBe(fakeOrder.id)
+      expect(result.referenceId).toBe(fakeRefId)
     })
   })
 })

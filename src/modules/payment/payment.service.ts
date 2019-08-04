@@ -1,9 +1,7 @@
 import { Injectable } from '@nestjs/common'
 
-export enum PAYMENT_STATUS {
-  DECLINED = 'DECLINED',
-  CONFIRMED = 'CONFIRMED',
-}
+import { MakePaymentResponseDto } from './dto/make-payment.dto'
+import { PaymentStatus } from './entity/payment'
 
 export interface Order {
   id: string
@@ -11,18 +9,16 @@ export interface Order {
 }
 
 @Injectable()
-export class Payment {
+export class PaymentService {
   async make (
-    order: Order,
-  ): Promise<{
-    order: Order
-    status: PAYMENT_STATUS
-  }> {
+    referenceId: string,
+    price: number
+  ): Promise<MakePaymentResponseDto> {
     return new Promise(resolve => {
       setTimeout(() => {
         return resolve({
-          order,
-          status: randomPaymentResult(PAYMENT_STATUS),
+          referenceId,
+          status: randomPaymentResult(PaymentStatus),
         })
       }, 3000)
     })
