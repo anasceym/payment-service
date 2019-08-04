@@ -7,4 +7,17 @@ services:
 
 before_install:
   - docker build -t payment-service .
+
+install:
+  - echo "install nothing!" 
+
+script:
   - docker run --rm payment-service npm test
+
+after_success:
+  - docker --version
+  - pip install --user awscli 
+  - export PATH=$PATH:$HOME/.local/bin
+  - eval $(aws ecr get-login --region ap-southeast-1) 
+  - docker tag payment-service:latest 249502522254.dkr.ecr.ap-southeast-1.amazonaws.com/playground-payment-service:latest
+  - docker push 249502522254.dkr.ecr.ap-southeast-1.amazonaws.com/playground-payment-service:latest
