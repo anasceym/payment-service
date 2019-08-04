@@ -12,7 +12,7 @@ export interface Order {
 export class PaymentService {
   async make (
     referenceId: string,
-    price: number
+    price: number,
   ): Promise<MakePaymentResponseDto> {
     return new Promise(resolve => {
       setTimeout(() => {
