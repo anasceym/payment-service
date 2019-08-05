@@ -11,16 +11,16 @@ export class AppController {
   @Get('health')
   @ApiOperation({
     title: 'Service health check',
-    description: 'To check the healthiness of the service'
+    description: 'To check the healthiness of the service',
   })
   @ApiOkResponse({
-    description: 'Service healthy'
+    description: 'Service healthy',
   })
   healthCheck (): {
     status: string
   } {
     return {
-      status: 'OK'
+      status: 'OK',
     }
   }
 }

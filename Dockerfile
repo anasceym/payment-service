@@ -5,5 +5,5 @@ COPY . /server
 RUN npm install
 RUN npm run build
 
-EXPOSE 2700
-CMD [ "node", "dist/main.js" ]
+EXPOSE 80
+CMD ["npm", "run", "start:prod"]
