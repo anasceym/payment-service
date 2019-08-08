@@ -1,6 +1,8 @@
 ## Description
 Payment-service. Another project for personal playground for NestJS framework.
 
+[![Build Status](https://travis-ci.org/anasceym/payment-service.svg?branch=master)](https://travis-ci.org/anasceym/payment-service)
+
 ## Installation
 
 ```bash
